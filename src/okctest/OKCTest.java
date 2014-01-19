@@ -1,18 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package okctest;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Matthew
- */
+//Author - Matthew Price
 public class OKCTest {
     //variables for each persons answer
-
     static int answerVal1 = 0; //person1's answer
     static int answerVal2 = 0; //person2's answer
     //variables for each persons desired answer
@@ -30,7 +22,7 @@ public class OKCTest {
     static int numberOfQuestions = 0;
 
     public static void main(String[] args) {
-        //run the questions
+        //run the questions one after the other
         question1();
         question2();
         question3();
@@ -52,7 +44,7 @@ public class OKCTest {
 
     public static double root(double combinedScore, double NthRoot) {
         //Power control variable
-        double i = 1;
+        double i;
         //if the number of common questions is less than 2 then 
         if (NthRoot <= 2) {
             //set to 1
@@ -66,11 +58,28 @@ public class OKCTest {
         return Math.pow(combinedScore, pow);
 
     }
+
     public static void getImportance() {
         importVal1 = checkImportance.checkImportVal(importVal1);
         importVal2 = checkImportance.checkImportVal(importVal2);
     }
-    
+
+    public static void getScore() {
+        if (desiredVal1 == answerVal2) {
+            person2Score = person2Score + importVal1;
+            max2Score = max2Score + importVal1;
+        } else {
+            max2Score = max2Score + importVal1;
+        }
+
+        if (desiredVal2 == answerVal1) {
+            person1Score = person1Score + importVal2;
+            max1Score = max1Score + importVal2;
+        } else {
+            max1Score = max1Score + importVal2;
+        }
+    }
+
     public static void question1() {
         //Question one - How messy are you?
         answerVal1 = Integer.parseInt(JOptionPane.showInputDialog("Person 1 - How messy are you? 1 = very, 2 = average, 3 = organised"));
@@ -114,21 +123,5 @@ public class OKCTest {
         getImportance();
         getScore();
         numberOfQuestions++;
-    }
-
-    public static void getScore() {
-        if (desiredVal1 == answerVal2) {
-            person2Score = person2Score + importVal1;
-            max2Score = max2Score + importVal1;
-        } else {
-            max2Score = max2Score + importVal1;
-        }
-
-        if (desiredVal2 == answerVal1) {
-            person1Score = person1Score + importVal2;
-            max1Score = max1Score + importVal2;
-        } else {
-            max1Score = max1Score + importVal2;
-        }
     }
 }
