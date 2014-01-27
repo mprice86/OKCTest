@@ -38,8 +38,12 @@ public class OKCTest {
         double combinedScore = ((score1 / max1) * 100) * ((score2 / max2) * 100);
 
         //get the combined match percentage
-        double ans = root(combinedScore, NthRoot);
-        System.out.println("Match is " + ans);
+        String ans = String.valueOf(root(combinedScore, NthRoot));
+        System.out.println("Match is " + ans.substring(0,3).replace(".", "") + "%");
+        //Write in IF statement to round percentages up or down as needed
+        //if (ans.substring(0,3) == "100") {
+        //  System.out.print(ans + "%");
+        // etc....
     }
 
     public static double root(double combinedScore, double NthRoot) {
@@ -56,7 +60,6 @@ public class OKCTest {
         //get the nth root of the two match percentages multipled by each other
         double pow = i / NthRoot;
         return Math.pow(combinedScore, pow);
-
     }
 
     public static void getImportance() {
